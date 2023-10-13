@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+  <style>
+    body{
+     margin: 0;
+     padding: 0;
+     font-family: Arial, Helvetica, sans-serif;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 5px;
+    }
+    header{
+     height: 100px;
+     width: 100%;
+     background-color:darkorange;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     color: whitesmoke;
+    }
+    header>div>button{
+     width: 130px;
+     height: 40px;
+    }
+    body>main{
+     height: 500px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: 600px;
+    }
+    body>footer{
+     background-color: gray;
+     color: whitesmoke;
+     bottom: 0;
+     width: 100%;
+     height: 70px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 2;
+    }
+    footer>div{
+     border: 1px solid;
+     width: 80px;
+     height: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-left: 20px;
+    }
+    main>table{
+     width: 100%;
+     height: 100%;
+     border-collapse: collapse;
+    }
+    td{
+     border: 1px solid;
+     width: 6.66%;
+     height: 6.66%;
+    }
+    td>button{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border: 0;
+     background-color: white;
+     width: 100%;
+     height: 100%;
+    }
+  </style>
+</head>
+<body onkeyup="handleKeyPress(event)">
+  <header>
+    <font style="font-size: 40px;"><b>SOS GAME <font id="pvp">1</font>P</b></font>
+    <div>
+      <button id="button-S" onclick="choose('S')" style="background-color:yellow;"><font style="font-size:20px;font-weight: bolder;">S</font></button>
+      <button id="button-O" onclick="choose('O')"><font style="font-size:20px;font-weight: bolder;">O</font></button>
+    </div>
+  </header>
+  <main>
+    <table id="table">
+    </table>
+  </main>
+  <footer>
+    <div style="background-color:red;"><font>Score: <font id="red">0</font></font></div>
+    <div style="background-color: green;"><font>Score: <font id="green">0</font></font></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
