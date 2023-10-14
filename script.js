@@ -132,60 +132,58 @@ function aiMoved(where){
 
 async function Ai(){
   let founded = false;
-  for(let i=0;i<223;i++){//Horizontal
-    sc = i+1;
-    if(i<13||(i>15&&i<28)||(i>30&&i<43)||(i>45&&i<58)
-    ||(i>60&&i<73)||(i>75&&i<88)||(i>90&&i<103)
-    ||(i>105&&i<118)||(i>120&&i<133)||(i>135&&i<148)
-    ||(i>150&&i<163)||(i>165&&i<179)||(i>180&&i<193)
-    ||(i>195&&i<208)||(i>210&&i<223)
-      ){
+
+  let horcol = 0;
+  for(let i=1;i<16;i++){
+    for(let j=1;j<14;j++){
+      sc = horcol+j;
       if(document.getElementById('B'+sc).innerHTML==='S'
-      && document.getElementById('B'+(sc+1)).innerHTML==='O'
-      && document.getElementById('B'+(sc+2)).innerHTML===''
-      &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        document.getElementById('B'+sc).style.color=currentPlayer;
-        document.getElementById('B'+(sc+1)).style.color=currentPlayer;
-        document.getElementById('B'+(sc+2)).style.color=currentPlayer;
-        document.getElementById('B'+(sc+2)).innerHTML='S';
-        let score = parseInt(document.getElementById(currentPlayer).innerHTML);
-        document.getElementById(currentPlayer).innerHTML = score + 1;
-        aiMoved(sc+2);
-        founded = true;
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      }
-      if(document.getElementById('B'+sc).innerHTML==='S'
-      && document.getElementById('B'+(sc+1)).innerHTML===''
-      && document.getElementById('B'+(sc+2)).innerHTML==='S'
-      &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        document.getElementById('B'+sc).style.color=currentPlayer;
-        document.getElementById('B'+(sc+1)).style.color=currentPlayer;
-        document.getElementById('B'+(sc+2)).style.color=currentPlayer;
-        document.getElementById('B'+(sc+1)).innerHTML='O';
-        let score = parseInt(document.getElementById(currentPlayer).innerHTML);
-        document.getElementById(currentPlayer).innerHTML = score + 1;
-        aiMoved(sc+1);
-        founded = true;
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      }
-      if(document.getElementById('B'+sc).innerHTML===''
-      && document.getElementById('B'+(sc+1)).innerHTML==='O'
-      && document.getElementById('B'+(sc+2)).innerHTML==='S'
-      &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        document.getElementById('B'+sc).style.color=currentPlayer;
-        document.getElementById('B'+(sc+1)).style.color=currentPlayer;
-        document.getElementById('B'+(sc+2)).style.color=currentPlayer;
-        document.getElementById('B'+sc).innerHTML='S';
-        let score = parseInt(document.getElementById(currentPlayer).innerHTML);
-        document.getElementById(currentPlayer).innerHTML = score + 1;
-        aiMoved(sc);
-        founded = true;
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      }
+        && document.getElementById('B'+(sc+1)).innerHTML==='O'
+        && document.getElementById('B'+(sc+2)).innerHTML===''
+        &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          document.getElementById('B'+sc).style.color=currentPlayer;
+          document.getElementById('B'+(sc+1)).style.color=currentPlayer;
+          document.getElementById('B'+(sc+2)).style.color=currentPlayer;
+          document.getElementById('B'+(sc+2)).innerHTML='S';
+          let score = parseInt(document.getElementById(currentPlayer).innerHTML);
+          document.getElementById(currentPlayer).innerHTML = score + 1;
+          aiMoved(sc+2);
+          founded = true;
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        if(document.getElementById('B'+sc).innerHTML==='S'
+        && document.getElementById('B'+(sc+1)).innerHTML===''
+        && document.getElementById('B'+(sc+2)).innerHTML==='S'
+        &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          document.getElementById('B'+sc).style.color=currentPlayer;
+          document.getElementById('B'+(sc+1)).style.color=currentPlayer;
+          document.getElementById('B'+(sc+2)).style.color=currentPlayer;
+          document.getElementById('B'+(sc+1)).innerHTML='O';
+          let score = parseInt(document.getElementById(currentPlayer).innerHTML);
+          document.getElementById(currentPlayer).innerHTML = score + 1;
+          aiMoved(sc+1);
+          founded = true;
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        if(document.getElementById('B'+sc).innerHTML===''
+        && document.getElementById('B'+(sc+1)).innerHTML==='O'
+        && document.getElementById('B'+(sc+2)).innerHTML==='S'
+        &&(document.getElementById('B'+sc).style.color===''|| document.getElementById('B'+(sc+1)).style.color==='' || document.getElementById('B'+(sc+2)).style.color==='')){
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          document.getElementById('B'+sc).style.color=currentPlayer;
+          document.getElementById('B'+(sc+1)).style.color=currentPlayer;
+          document.getElementById('B'+(sc+2)).style.color=currentPlayer;
+          document.getElementById('B'+sc).innerHTML='S';
+          let score = parseInt(document.getElementById(currentPlayer).innerHTML);
+          document.getElementById(currentPlayer).innerHTML = score + 1;
+          aiMoved(sc);
+          founded = true;
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }  
     }
+    horcol = horcol + 15;
   }
   for(let i=0;i<195;i++){//Vertical
     sc = i+1;
@@ -494,18 +492,11 @@ function switchPlayer(){
 //This Code set something detect-SOS
 function setIfHasSos(){//Run If Button is onClick
   let detectSos = false;
-  for(let i=0;i<223;i++){//Horizontal
-    sc = i+1;
-    // 15 30 45 60 75
-    // 90 105 120 135 150
-    // 165 180 195 210
-
-    if(i<13||(i>15&&i<28)||(i>30&&i<43)||(i>45&&i<58)
-    ||(i>60&&i<73)||(i>75&&i<88)||(i>90&&i<103)
-    ||(i>105&&i<118)||(i>120&&i<133)||(i>135&&i<148)
-    ||(i>150&&i<163)||(i>165&&i<179)||(i>180&&i<193)
-    ||(i>195&&i<208)||(i>210&&i<223)
-      ){
+  
+  let horcol = 0;
+  for(let i=1;i<16;i++){
+    for(let j=1;j<14;j++){
+      sc = horcol+j;
       if(document.getElementById('B'+sc).innerHTML==='S'
       && document.getElementById('B'+(sc+1)).innerHTML==='O'
       && document.getElementById('B'+(sc+2)).innerHTML=='S'
@@ -518,6 +509,7 @@ function setIfHasSos(){//Run If Button is onClick
         document.getElementById(currentPlayer).innerHTML = score + 1;
       }
     }
+    horcol = horcol + 15;
   }
   for(let i=0;i<195;i++){//Vertical
     sc = i+1;
